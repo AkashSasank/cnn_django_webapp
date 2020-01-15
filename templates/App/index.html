@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mobilenet Demo</title>
+  </head>
+
+  {% if flag == 1 %}
+  <body >
+  {% elif flag == 0 %}
+    <body onload="loadImage()">
+  {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <input name="document" type="file" accept="image/*" onchange="loadFile(event)">
+    <button type="submit" >Predict</button>
+  </form>
+  <img id="output">
+  <h2 id="prediction">{{prediction}}</h2>
+  <h2 style="display:none">{{prediction}}</h2>
+  </body>
+</html>
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    var filename = event.target.files[0]
+    output.src = URL.createObjectURL(event.target.files[0]);
+    localStorage.setItem("imageLink", output.src)
+    document.getElementById('prediction').innerHTML = ''
+
+  };
+  var loadImage = function() {
+    url = localStorage.getItem("imageLink")
+    var output = document.getElementById('output');
+    output.src = url
+  };
+</script>
