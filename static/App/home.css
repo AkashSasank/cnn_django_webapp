@@ -1,0 +1,26 @@
+    img{
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+    }
+    .container{
+        height:100%;
+        display:flex;
+        flex-direction:row;
+        justify-content:space-around;
+    }
+    .image-box{
+        height:200px;
+        width:200px;
+        border:5px solid;
+    }
+    .action-container{
+        height:200px;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-around;
+    }
+    .output{
+        display:flex;
+        justify-content:left;
+    }

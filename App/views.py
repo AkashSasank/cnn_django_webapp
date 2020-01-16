@@ -37,4 +37,6 @@ def predict(model, filename):
     input_image = preprocess_input(input_image)
     prediction = model.predict(input_image)
     label = decode_predictions(prediction)[0][0]
-    return '{} {}'.format(label[1], label[2] * 100)
+    name = ' '.join(label[1].split('_'))
+    print(name)
+    return name

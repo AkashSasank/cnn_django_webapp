@@ -3,6 +3,10 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{%static 'App/home.css'%}">
     <title>Mobilenet Demo</title>
   </head>
 
@@ -11,15 +15,30 @@
   {% elif flag == 0 %}
     <body onload="loadImage()">
   {% endif %}
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'App/icon.png'%}" width="100" height="100" alt="icon" >
+    </a>
+  </nav>
 
-    <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-      <input name="document" type="file" accept="image/*" onchange="loadFile(event)">
-    <button type="submit" >Predict</button>
-  </form>
-  <img id="output">
-  <h2 id="prediction">{{prediction}}</h2>
-  <h2 style="display:none">{{prediction}}</h2>
+  <div class="container">
+    <div class="image-box">
+        <img id="output" src="">
+    </div>
+
+    <div class="action-container">
+      <div class="output">
+        <h2>Prediciton : </h2>
+        <h2 id="prediction" style="color:Tomato;">{{prediction}}</h2>
+      </div>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+          <input name="document" type="file" accept="image/*" onchange="loadFile(event)">
+        <button type="submit" >Predict</button>
+      </form>
+    </div>
+
+  </div>
   </body>
 </html>
 <script>
